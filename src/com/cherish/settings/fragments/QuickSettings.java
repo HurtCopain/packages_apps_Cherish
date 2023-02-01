@@ -38,7 +38,9 @@ public class QuickSettings extends SettingsPreferenceFragment implements
         OnPreferenceChangeListener {
 			
 	private ListPreference mQuickPulldown;
-	
+        private static final String QS_PAGE_TRANSITIONS = "custom_transitions_page_tile";
+        private SystemSettingListPreference mPageTransitions;
+        	
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
@@ -55,6 +57,14 @@ public class QuickSettings extends SettingsPreferenceFragment implements
         mQuickPulldown.setValue(String.valueOf(qpmode));
         mQuickPulldown.setSummary(mQuickPulldown.getEntry());
         mQuickPulldown.setOnPreferenceChangeListener(this);
+        
+                mPageTransitions = (SystemSettingListPreference) findPreference(QS_PAGE_TRANSITIONS);
+        mPageTransitions.setOnPreferenceChangeListener(this);
+        int customTransitions = Settings.System.getIntForUser(resolver,
+                Settings.System.CUSTOM_TRANSITIONS_KEY,
+                0, UserHandle.USER_CURRENT);
+        mPageTransitions.setValue(String.valueOf(customTransitions));
+        mPageTransitions.setSummary(mPageTransitions.getEntry());
 	}
 
     @Override
@@ -68,6 +78,14 @@ public class QuickSettings extends SettingsPreferenceFragment implements
             int index = mQuickPulldown.findIndexOfValue((String) newValue);
             mQuickPulldown.setSummary(
                     mQuickPulldown.getEntries()[index]);
+            return true;
+            	} else if (preference == mPageTransitions) {
+            int customTransitions = Integer.parseInt(((String) newValue).toString());
+            Settings.System.putIntForUser(getContentResolver(),
+                    Settings.System.CUSTOM_TRANSITIONS_KEY, customTransitions, UserHandle.USER_CURRENT);
+            int index = mPageTransitions.findIndexOfValue((String) newValue);
+            mPageTransitions.setSummary(
+                    mPageTransitions.getEntries()[index]);
             return true;
         }
         return false;
