@@ -989,4 +989,8 @@
     <string name="screen_off_animation_default">Default</string>
     <string name="screen_off_animation_crt">CRT</string>
     <string name="screen_off_animation_scale">Scale</string>
+    
+    <!-- Haptic feedback settings -->
+    <string name="haptic_feedback_category">Haptic Feedback Settings</string>
+    <string name="volume_panel_haptic_feedback_title">Vibrate on changing volume</string>
 </resources>
