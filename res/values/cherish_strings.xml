@@ -983,4 +983,10 @@
     <string name="dynamic_system_bars_category_title">Dynamic system bars</string>
     <string name="dynamic_system_bars_gradient_summary">Overlay a gradient on the status bar</string>
     <string name="dynamic_system_bars_gradient_title">Status bar gradient</string>
+    
+    <!-- Screen Off animation -->
+    <string name="screen_off_animation_title">Screen off animation</string>
+    <string name="screen_off_animation_default">Default</string>
+    <string name="screen_off_animation_crt">CRT</string>
+    <string name="screen_off_animation_scale">Scale</string>
 </resources>
